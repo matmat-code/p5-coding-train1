@@ -12,16 +12,21 @@ function setup(){
 }
 
 function mousePressed(){
-    for (let i = 0; i < bubbles.length; i++){
-        bublles[i].clicked(mouseX,mouseY);
+    for (let i = bubbles.length-1; i >= 0; i--)
+        if (bubbles[i].contains(mouseX,mouseY)){
+            bubbles.splice(i,1);
     }
 }
 
 function draw(){
     background(0);
     for (let i = 0; i < bubbles.length; i++){
-        bublles[i].move();
-        bublles[i].show();
+        if (bubbles[i].roleover(mouseX,mouseY)){
+            bubbles[i].changeCollor(255);
+            }else{
+                bubbles[i].changeCollor(0);
+            }
+
     }
 }
 
@@ -37,6 +42,19 @@ class Bubble {
         let d = dist(x,y,this.x,this.y);
         if (d < this.r);
         this.brightness = 255;
+    }
+
+    changeCollor(bright){
+        this.brightness = bright
+    }
+
+    roleover(px,py){
+        let d = dist(px,py,this.x,this.y);
+        if (d < this.r) {
+            return true;
+        }  else {
+            return false;
+        }
     }
 
     move(){
