@@ -1,10 +1,11 @@
-let bubble1;
-let bubble2;
+let bubbles = [];
+
 
 function setup(){
      createCanvas(600,400);
-     bubble1 = new Bubble(200,200)
-     bubble1 = new Bubble(300,200,100)
+     for (let i = 0; i < 10; i++){
+         bubbles[i] = new Bubble()
+     }
 }
 
 function draw(){
@@ -55,3 +56,5 @@ class Bubble {
         }
     
 }
+
+//1:52
